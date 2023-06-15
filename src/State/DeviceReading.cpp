@@ -107,7 +107,7 @@ namespace VXHelper
                     Renderer::getInstance()->font.draw(pzx, 116+16*2, "║                O                ║", VGA_COLORS[0x0F]);
                     break;
                 case 6:
-                    Renderer::getInstance()->font.draw(pzx, 116+16*2, "║             Trianle             ║", VGA_COLORS[0x0F]);
+                    Renderer::getInstance()->font.draw(pzx, 116+16*2, "║             Triangle            ║", VGA_COLORS[0x0F]);
                     break;
                 case 7:
                     Renderer::getInstance()->font.draw(pzx, 116+16*2, "║              Square             ║", VGA_COLORS[0x0F]);
