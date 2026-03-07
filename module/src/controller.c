@@ -4,7 +4,7 @@
 #include <psp2kern/kernel/threadmgr.h>
 #include <psp2kern/usbd.h>
 
-extern SceUID transfer_ev;
+//extern SceUID transfer_ev;
 
 void on_read_data(int32_t result, int32_t count, void *arg)
 {

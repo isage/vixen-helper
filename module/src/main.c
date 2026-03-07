@@ -20,7 +20,7 @@ static int started = 0;
 static int vendor = 0;
 static int product = 0;
 
-SceUID transfer_ev = 0;
+//SceUID transfer_ev = 0;
 
 static Controller cont;
 
@@ -43,7 +43,7 @@ int libvixen_attach(int device_id);
 int libvixen_detach(int device_id);
 
 static const SceUsbdDriver libvixenDriver = {
-    .name   = "libvixen",
+    .name   = "vixenhelper",
     .probe  = libvixen_probe,
     .attach = libvixen_attach,
     .detach = libvixen_detach,
@@ -110,6 +110,7 @@ int libvixen_attach(int device_id)
             if (cont.buffer_size > 64)
             {
                 ksceDebugPrintf("Packet size too big = %d\n", endpoint->wMaxPacketSize);
+                logme("Packet size too big = %d\n", endpoint->wMaxPacketSize);
                 return SCE_USBD_ATTACH_FAILED;
             }
           }
@@ -128,6 +129,7 @@ int libvixen_attach(int device_id)
           // set default config
           int r = ksceUsbdSetConfiguration(control_pipe_id, cdesc->bConfigurationValue, NULL, NULL);
           ksceDebugPrintf("ksceUsbdSetConfiguration = 0x%08x\n", r);
+          logme("ksceUsbdSetConfiguration = 0x%08x\n", r);
           if (r < 0)
             return SCE_USBD_ATTACH_FAILED;
             cont.attached = 1;
@@ -141,6 +143,7 @@ int libvixen_attach(int device_id)
           return SCE_USBD_ATTACH_FAILED;
         }
         ksceDebugPrintf("Attached!\n");
+        logme("Attached!\n");
         return SCE_USBD_ATTACH_SUCCEEDED;
       }
     }
@@ -230,7 +233,7 @@ int module_start(SceSize args, void *argp)
   int ret_drv = ksceUsbdUnregisterDriver(&libvixenFakeUsbchargeDriver);
   ksceDebugPrintf("ksceUsbdUnregisterDriver = 0x%08x\n", ret_drv);
 
-  transfer_ev = ksceKernelCreateEventFlag("vixen_transfer", 0, 0, NULL);
+//  transfer_ev = ksceKernelCreateEventFlag("vixen_transfer", 0, 0, NULL);
 
   return SCE_KERNEL_START_SUCCESS;
 }

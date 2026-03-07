@@ -95,7 +95,7 @@ set_property(TARGET VXHelper PROPERTY OUTPUT_NAME VXHelper)
 ELSEIF(PLATFORM STREQUAL "vita")
     add_definitions("-std=gnu++17")
     add_definitions("-D__VITA__")
-    target_link_libraries(VXHelper ${SDL2_IMAGE_LIBRARY} SDL2::SDL2-static jpeg webp png z vixen-helper_stub SceUsbd_stub pthread taihen_stub)
+    target_link_libraries(VXHelper ${SDL2_IMAGE_LIBRARY} SDL2::SDL2-static jpeg webp webpdemux png z vixen-helper_stub SceUsbd_stub pthread taihen_stub)
 
 
   vita_create_self(${PROJECT_NAME}.self VXHelper UNSAFE)
