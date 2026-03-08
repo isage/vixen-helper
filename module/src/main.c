@@ -196,6 +196,35 @@ int vixenhelperStop()
     return 0;
 }
 
+static char* buttons[] = {
+    "NONE",
+    "DPAD LEFT",
+    "DPAD UP",
+    "DPAD DOWN",
+    "DPAD RIGHT",
+    "CROSS",
+    "CIRCLE",
+    "TRIANGLE",
+    "SQUARE",
+    "L UP",
+    "L DOWN",
+    "L LEFT",
+    "L RIGHT",
+    "R UP",
+    "R DOWN",
+    "R LEFT",
+    "R RIGHT",
+    "L1",
+    "R1",
+    "L2",
+    "R2",
+    "L3",
+    "R3",
+    "SELECT",
+    "START",
+    "PS",
+};
+
 int vixenhelperRead(int button)
 {
     uint32_t state;
@@ -203,7 +232,7 @@ int vixenhelperRead(int button)
 
     if (cont.inited)
     {
-        logme("button: %x: \n", button);
+        logme("button: %s: \n", buttons[button]);
 
         for (int i = 0; i < cont.buffer_size; i++)
             logme("0x%02x ", cont.buffer[i]);

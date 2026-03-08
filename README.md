@@ -4,7 +4,6 @@ Helper app to provide necessary data required for adding new controllers support
 
 ## Usage
 
-* Copy `vixen-helper.skprx` into  `ur0:/tai` and add it to your config.txt under `*KERNEL`, reboot.  
 * Install VXHelper.vpk and launch.
 * Connect your usb gamepad when asked (you can also connect it prior to launching app).
 * Select your device from list of VENDOR_ID:PRODUCT_ID, you can get this values by connecting gamepad to pc and using [gamepad tester website](https://gamepad-tester.com/) or lsusb (on linux/osx).  

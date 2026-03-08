@@ -95,7 +95,21 @@ set_property(TARGET VXHelper PROPERTY OUTPUT_NAME VXHelper)
 ELSEIF(PLATFORM STREQUAL "vita")
     add_definitions("-std=gnu++17")
     add_definitions("-D__VITA__")
-    target_link_libraries(VXHelper ${SDL2_IMAGE_LIBRARY} SDL2::SDL2-static jpeg webp webpdemux png z vixen-helper_stub SceUsbd_stub pthread taihen_stub)
+    target_link_libraries(VXHelper
+        ${SDL2_IMAGE_LIBRARY}
+        SDL2::SDL2-static
+        jpeg
+        webp
+        webpdemux
+        png
+        z
+        vixen-helper_stub_weak
+        SceUsbd_stub
+        -Wl,--whole-archive pthread -Wl,--no-whole-archive
+        taihen_stub
+        SceVshBridge_stub
+        SceAppMgr_stub
+    )
 
 
   vita_create_self(${PROJECT_NAME}.self VXHelper UNSAFE)
@@ -103,6 +117,7 @@ ELSEIF(PLATFORM STREQUAL "vita")
     VERSION ${VITA_VERSION}
     NAME ${VITA_APP_NAME}
     FILE platform/vita/sce_sys sce_sys
+    FILE module/build/vixen-helper.skprx module/vixen-helper.skprx
     FILE data data
   )
 ENDIF()

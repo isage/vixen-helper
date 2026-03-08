@@ -25,10 +25,27 @@
 #include "ResourceManager.h"
 #include "State/Start.h"
 
+#include <taihen.h>
+#include <psp2/vshbridge.h>
+#include <psp2/appmgr.h>
+#include <psp2/kernel/threadmgr/thread.h>
+#define MOD_PATH "ux0:app/VXNH00001/module/vixen-helper.skprx"
+
 using namespace VXHelper;
 
 int main(int argc, char* argv[])
 {
+  int search_param[2];
+  SceUID res = _vshKernelSearchModuleByName("vixen-helper", search_param);
+  if (res <=0 )
+  {
+      SceUID mod_id;
+      mod_id = taiLoadStartKernelModule(MOD_PATH, 0, NULL, 0);
+      sceKernelDelayThread(1000000);
+      sceAppMgrLoadExec("app0:eboot.bin", NULL, NULL);
+  }
+
+
     SDL_Init(SDL_INIT_EVERYTHING);
     Utils::Logger::init(ResourceManager::getInstance()->getPrefPath("debug.log"));
 
